@@ -1,2 +1,2 @@
 # spa
-see example in index.html
+see example in index.html https://bobagold.github.io/spa/
