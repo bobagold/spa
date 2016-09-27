@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>test spa (single page application)</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #titleblock { height: 40px; border: 1px solid orange; }
+            #navbar {
+                height: 30px; border: 1px solid blue;
+                padding-left: 30px;
+                background-color: lightblue;
+            }
+            .active { font-weight: bold; }
+            .tall { height: 1000px; border: 1px solid green; }
+            .sticky {
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 100;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="titleblock">Header that is invisible after scrolling</div>
+        <div id="navbar">
+            <a href="/" id="first" class="active">First</a>
+            <a href="/second" id="second">Second</a>
+            <a href="/third" id="third">Third</a>
+        </div>
+        <div id="content">
+            <div class="tall">
+                First content<br/>
+                Scroll down, please
+            </div>
+        </div>
+
+        <script src="spa.js"></script>
+        <script>
+        (function () {
+            var stickyNav = function(element, stickyNavTop) {
+                var scrollTop = window.pageYOffset;
+
+                if (scrollTop > stickyNavTop) {
+                    element.classList.add('sticky');
+                } else {
+                    element.classList.remove('sticky');
+                }
+            };
+            document.addEventListener("DOMContentLoaded", function () {
+                var navbar = document.getElementById('navbar'),
+                    content = document.getElementById('content'),
+                    stickyNavTop = navbar.offsetTop;
+
+                spa.init(navbar, content);
+
+                stickyNav(navbar, stickyNavTop);
+
+                window.addEventListener('scroll', function () {
+                    stickyNav(navbar, stickyNavTop);
+                    spa.scroll(navbar, {
+                        insertPlaceholder: function (container) {
+                            var ph = document.createElement('div');
+                            ph.innerHTML = 'loading...';
+                            ph.style.height = '1000px';
+                            container.appendChild(ph);
+                            return function () {
+                                container.removeChild(ph);
+                            };
+                        },
+                        loadPage: function (href, callback) {
+                            window.setTimeout(function () {
+                                callback('<div class="tall">' + 
+                                        (href + ' contents<br/>').repeat(40) + 
+                                        '</div>');
+                            }, 500);
+                        }
+                    });
+                });
+            });
+        })();
+        </script>
+    </body>
+</html>

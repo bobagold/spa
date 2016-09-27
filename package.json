@@ -1,0 +1,38 @@
+{
+  "name": "spa",
+  "version": "1.0.0",
+  "description": "Library to turn a simple site into single page application (SPA)",
+  "main": "spa.js",
+  "scripts": {
+    "test": "mocha spa.test.js",
+    "posttest": "jshint spa.test.js spa.js && jscs spa.test.js spa.js && mocha --require blanket -R travis-cov spa.test.js"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        "spa.js"
+      ],
+      "data-cover-never": [
+        "node_modules",
+        "spa.test.js"
+      ]
+    },
+    "travis-cov": {
+      "threshold": 69
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobagold/spa.git"
+  },
+  "keywords": [
+    "spa",
+    "lazy"
+  ],
+  "author": "Vladimir Goldobin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bobagold/spa/issues"
+  },
+  "homepage": "https://github.com/bobagold/spa#readme"
+}
