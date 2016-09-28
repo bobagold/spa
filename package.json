@@ -6,6 +6,7 @@
   "scripts": {
     "test": "nyc mocha spa.test.js",
     "posttest": "jshint spa.test.js spa.js && jscs spa.test.js spa.js",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc report --reporter html"
   },
   "nyc": {
@@ -30,6 +31,7 @@
   },
   "homepage": "https://github.com/bobagold/spa#readme",
   "devDependencies": {
+    "coveralls": "^2.11.14",
     "jscs": "^3.0.7",
     "jshint": "^2.9.3",
     "mocha": "^3.1.0",
