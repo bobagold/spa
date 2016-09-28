@@ -34,5 +34,12 @@
   "bugs": {
     "url": "https://github.com/bobagold/spa/issues"
   },
-  "homepage": "https://github.com/bobagold/spa#readme"
+  "homepage": "https://github.com/bobagold/spa#readme",
+  "devDependencies": {
+    "blanket": "^1.2.3",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.3",
+    "mocha": "^3.1.0",
+    "sinon": "^1.17.6"
+  }
 }
